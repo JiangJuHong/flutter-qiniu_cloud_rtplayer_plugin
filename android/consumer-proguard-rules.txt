@@ -1,0 +1,6 @@
+-keep class org.webrtc.** {*;}
+-dontwarn org.webrtc.**
+-keep class com.qiniu.droid.rtplayer.**{*;}
+-keep interface com.qiniu.droid.rtplayer.**{*;}
+-keep class top.huic.qiniu_cloud_rtplayer_plugin.**{*;}
+-keep interface top.huic.qiniu_cloud_rtplayer_plugin.**{*;}

@@ -47,6 +47,8 @@ android {
 
     defaultConfig {
         minSdk = 21
+        // library 混淆 -> 随 library 引用，自动添加到 apk 打包混淆
+        consumerProguardFiles 'consumer-proguard-rules.txt'
     }
 
     dependencies {
@@ -65,4 +67,8 @@ android {
             }
         }
     }
+}
+
+dependencies {
+    api files('libs/qndroid-rtplayer-1.0.1.jar')
 }

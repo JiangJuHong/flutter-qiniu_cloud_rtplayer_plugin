@@ -18,12 +18,4 @@ void main() {
   test('$MethodChannelQiniuCloudRtplayerPlugin is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelQiniuCloudRtplayerPlugin>());
   });
-
-  test('getPlatformVersion', () async {
-    QiniuCloudRtplayerPlugin qiniuCloudRtplayerPlugin = QiniuCloudRtplayerPlugin();
-    MockQiniuCloudRtplayerPluginPlatform fakePlatform = MockQiniuCloudRtplayerPluginPlatform();
-    QiniuCloudRtplayerPluginPlatform.instance = fakePlatform;
-
-    expect(await qiniuCloudRtplayerPlugin.getPlatformVersion(), '42');
-  });
 }

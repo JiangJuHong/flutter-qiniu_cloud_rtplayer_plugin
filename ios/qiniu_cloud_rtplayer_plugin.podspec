@@ -21,6 +21,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 arm64' }
   s.swift_version = '5.0'
 
+  # 因为此版本需要兼容模拟器，所以无法上架到AppStore，如需上架到AppStore，请更改Framework为iphones版本
   # 七牛云低延时播放SDK v1.0.2，如需更新依赖版本，请前往 https://raw.githubusercontent.com/pili-engineering/QNRTPlayer-iOS/master/QNRTPlayerKit-Universal.podspec 下载最新ZIP版本并替换Framework目录中的QNRTCKit
   s.subspec 'QNRTPlayerKit' do |sp|
     sp.requires_arc            = true

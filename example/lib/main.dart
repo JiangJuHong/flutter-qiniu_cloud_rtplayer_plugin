@@ -16,34 +16,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _qiniuCloudRtplayerPlugin = QiniuCloudRtplayerPlugin();
+  /// 视图控制器
+  QiniuCloudRtplayerViewController? _controller;
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _qiniuCloudRtplayerPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
+  /// 视图创建事件
+  void _onViewCreated(int viewId) {
+    _controller = QiniuCloudRtplayerViewController(viewId);
+    _controller!.addListener((params) {
+      print("listener:$params");
     });
   }
 
@@ -54,8 +39,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          children: [
+            Expanded(child: QiniuCloudRtplayerView(onViewCreated: _onViewCreated)),
+            TextButton(onPressed: () => _controller!.player(httpPost: false, forceReset: false, url: "https://pili-live-hls.zqsq-test.huic.top/zqsq-dev/1808450709629345792.m3u8?sign=8397209d0d57aa717b82cda859ca1d1e&t=668538b4"), child: Text("Player")),
+            TextButton(onPressed: () => _controller!.stopPlay(), child: Text("stopPlay")),
+          ],
         ),
       ),
     );

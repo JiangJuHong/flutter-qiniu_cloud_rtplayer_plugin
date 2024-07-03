@@ -8,10 +8,4 @@ class MethodChannelQiniuCloudRtplayerPlugin extends QiniuCloudRtplayerPluginPlat
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('qiniu_cloud_rtplayer_plugin');
-
-  @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
-  }
 }
